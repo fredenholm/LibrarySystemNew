@@ -1,0 +1,30 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Page.master.cs" Inherits="LibrarySystem.Page" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="header" class="master">
+            <h1>Library System</h1>
+            <asp:Label id="lblAuthorId" runat="server" text="Author-id: "></asp:Label> <asp:TextBox id="txtAuthorId" runat="server" />
+            <a href="WebForm2.aspx" id="getBooks" runat="server">Get Book Details</a><br />
+            <asp:Label ID="lblBookId" runat="server" Text="Book Title: "></asp:Label> <asp:TextBox id="txtBookTitle" runat="server"></asp:TextBox>
+            <a href="WebForm3.aspx" id="getBookDetails" runat="server">Get Book Details</a><br />
+            <asp:Label ID="lblAuthor" runat="server" Text="Author Title: "></asp:Label> <asp:TextBox ID="txtAuthorTitle" runat="server"></asp:TextBox>
+            <a href="WebForm4.aspx" id="getAuthorDetails" runat="server">Get Author Details</a><br />
+            <asp:Button ID="login1" runat="server" Text="Login" OnClick="login1_Click"/>
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

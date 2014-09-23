@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="WebForm4.aspx.cs" Inherits="LibrarySystem.WebForm4" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="Books.aspx.cs" Inherits="LibrarySystem.WebForm2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Repeater ID="rptAuthorDetails" runat="server">
+       <asp:Repeater ID="rptBooks" runat="server">
         <HeaderTemplate>
             <tr>
                 <th><%#Session["rptAuthorArg"] %></th>
@@ -15,11 +15,8 @@
         </HeaderTemplate>
         <ItemTemplate>
             <tr>
-                <td><%#Eval("Aid") %></td>
-                <td><%#Eval("FirstName") %></td>
-                <td><%#Eval("LastName") %></td>
-                <td><%#Eval("BirthYear") %></td>
-                <asp:Button runat="server" text="Books" Font-Size="X-Small"/>
+                <td><%#Eval("ISBN") %></td>
+                <td><%#Eval("Title") %></td>
             </tr>
             <br/>
         </ItemTemplate>

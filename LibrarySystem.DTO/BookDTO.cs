@@ -43,6 +43,6 @@ namespace LibrarySystem.DTO
         public string classificationCode = null;
         public string publicationInfo = null;
         public int pages = 0;
-
+        public List<string> titleList = new List<string>();
     }
 }

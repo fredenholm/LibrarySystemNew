@@ -10,7 +10,7 @@ namespace LibrarySystem.BL
 {
     public class Book
     {
-                private BookDTO _bookDTO;
+        private BookDTO _bookDTO;
 
         #region constructors
         //Initialize a new DTO-object for the transferring data about author
@@ -18,7 +18,7 @@ namespace LibrarySystem.BL
         {
             _bookDTO = new BookDTO();
         }
-        
+
         //A constructor which creates a DTO-object with data from an existing DTO-object
         public Book(BookDTO _sourceDTO)
         {
@@ -35,7 +35,7 @@ namespace LibrarySystem.BL
 
         public string ISBN
         {
-            get { return _bookDTO.isbnNo;}
+            get { return _bookDTO.isbnNo; }
             set { _bookDTO.isbnNo = value; }
         }
 
@@ -44,7 +44,7 @@ namespace LibrarySystem.BL
             get
             {
                 Load();
-                return _bookDTO.title; 
+                return _bookDTO.title;
             }
             set { _bookDTO.title = value; }
         }
@@ -86,8 +86,9 @@ namespace LibrarySystem.BL
         }
         public string Location
         {
-            get {
-                Load(); 
+            get
+            {
+                Load();
                 return _bookDTO.location;
             }
             set { _bookDTO.location = value; }
@@ -95,8 +96,9 @@ namespace LibrarySystem.BL
 
         public string ClassificationCode
         {
-            get {
-                Load(); 
+            get
+            {
+                Load();
                 return _bookDTO.classificationCode;
             }
             set { _bookDTO.classificationCode = value; }
@@ -121,6 +123,16 @@ namespace LibrarySystem.BL
             }
             set { _bookDTO.pages = value; }
         }
+        public List<string> TitleList
+        {
+            get
+            {
+                Load();
+                return _bookDTO.titleList;
+            }
+            set { _bookDTO.titleList = value; }
+
+        }
         #endregion  // Properties
 
         #region private methods
@@ -129,9 +141,9 @@ namespace LibrarySystem.BL
         {
             try
             {
-                if(_bookDTO.loadStatus == LoadStatus.Ghost)
+                if (_bookDTO.loadStatus == LoadStatus.Ghost)
                 {
-                    _bookDTO = LibraryDataAccess.getBookTitle(_bookDTO.isbnNo);
+                    _bookDTO = LibraryDataAccess.loadBookDAL(_bookDTO.isbnNo);
                     _bookDTO.loadStatus = LoadStatus.Loaded;
                 }
             }
@@ -173,21 +185,18 @@ namespace LibrarySystem.BL
         public static List<Book> getBookByTitle(string Title)
         {
             List<BookDTO> dtoList = null; ;
-            // This method retrieves a list of all books in the library system
             if (string.IsNullOrEmpty(Title))
             {
-                dtoList = LibraryDataAccess.getAllBooksDAL();  //BookDTO is the interface common for BL and DAL
+                dtoList = LibraryDataAccess.getAllBooksDAL();
             }
             else
             {
+                // This method retrieves a list of all books in the library system
+                LibraryDataAccess.title = Title;
                 //Fetch the correct AuthorDTO object and connect an Author object for it
-                BookDTO dto = LibraryDataAccess.getBookTitle(Title);
-                dto.loadStatus = LoadStatus.Ghost; //Force it to load all data
-                Book AuthorObject = new Book(dto);
-                // Use the author objects IsbnList property 
-                dtoList = LibraryDataAccess.getAllBooksDAL();
+                Book Bookobject = new Book();
+                dtoList = LibraryDataAccess.getBookTitle(Bookobject.TitleList);
             }
-            // Convert to Book objects since UI only references BL (not DAL or DTO)
             List<Book> results = new List<Book>();
             foreach (BookDTO dto in dtoList)
             {

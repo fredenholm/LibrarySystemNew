@@ -43,3 +43,14 @@ C:\Users\David\google drive\LibSysFiveTier\LibrarySystem\bin\LibrarySystem.DAL.p
 C:\Users\David\google drive\LibSysFiveTier\LibrarySystem\obj\Debug\LibrarySystem.csprojResolveAssemblyReference.cache
 C:\Users\David\google drive\LibSysFiveTier\LibrarySystem\obj\Debug\LibrarySystem.dll
 C:\Users\David\google drive\LibSysFiveTier\LibrarySystem\obj\Debug\LibrarySystem.pdb
+C:\Users\Huggan\Documents\Visual Studio 2012\Projects\LibrarySystemNew\LibrarySystem\bin\LibrarySystem.dll
+C:\Users\Huggan\Documents\Visual Studio 2012\Projects\LibrarySystemNew\LibrarySystem\bin\LibrarySystem.pdb
+C:\Users\Huggan\Documents\Visual Studio 2012\Projects\LibrarySystemNew\LibrarySystem\bin\LibrarySystem.BL.dll
+C:\Users\Huggan\Documents\Visual Studio 2012\Projects\LibrarySystemNew\LibrarySystem\bin\LibrarySystem.DTO.dll
+C:\Users\Huggan\Documents\Visual Studio 2012\Projects\LibrarySystemNew\LibrarySystem\bin\LibrarySystem.DAL.dll
+C:\Users\Huggan\Documents\Visual Studio 2012\Projects\LibrarySystemNew\LibrarySystem\bin\LibrarySystem.BL.pdb
+C:\Users\Huggan\Documents\Visual Studio 2012\Projects\LibrarySystemNew\LibrarySystem\bin\LibrarySystem.DTO.pdb
+C:\Users\Huggan\Documents\Visual Studio 2012\Projects\LibrarySystemNew\LibrarySystem\bin\LibrarySystem.DAL.pdb
+C:\Users\Huggan\Documents\Visual Studio 2012\Projects\LibrarySystemNew\LibrarySystem\obj\Debug\LibrarySystem.csprojResolveAssemblyReference.cache
+C:\Users\Huggan\Documents\Visual Studio 2012\Projects\LibrarySystemNew\LibrarySystem\obj\Debug\LibrarySystem.dll
+C:\Users\Huggan\Documents\Visual Studio 2012\Projects\LibrarySystemNew\LibrarySystem\obj\Debug\LibrarySystem.pdb

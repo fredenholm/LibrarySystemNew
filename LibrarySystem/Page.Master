@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -12,13 +12,12 @@
     <form id="form1" runat="server">
         <div id="header" class="master">
             <h1>Library System</h1>
-            <asp:Label id="lblAuthorId" runat="server" text="Author-id: "></asp:Label> <asp:TextBox id="txtAuthorId" runat="server" />
-            <a href="WebForm2.aspx" id="getBooks" runat="server">Get Book Details</a><br />
+            <asp:Label id="lblAuthorId" runat="server" text="Auther-id: "></asp:Label> <asp:TextBox id="txtAuthorId" runat="server" />
+            <asp:Button ID="getBooks" runat="server" Text="Get List of Books" OnClick="getBooks_Click"/><br />
             <asp:Label ID="lblBookId" runat="server" Text="Book Title: "></asp:Label> <asp:TextBox id="txtBookTitle" runat="server"></asp:TextBox>
-            <a href="WebForm3.aspx" id="getBookDetails" runat="server">Get Book Details</a><br />
+            <asp:Button ID="getBookDetails" runat="server" Text="Get Book Details" OnClick="getBookDetails_Click" /><br />
             <asp:Label ID="lblAuthor" runat="server" Text="Author Title: "></asp:Label> <asp:TextBox ID="txtAuthorTitle" runat="server"></asp:TextBox>
-            <a href="WebForm4.aspx" id="getAuthorDetails" runat="server">Get Author Details</a><br />
-            <asp:Button ID="login1" runat="server" Text="Login" OnClick="login1_Click"/>
+            <asp:Button ID="getAuthorDetails" runat="server" Text="Get Author Details" OnClick="getAuthorDetails_Click" /><br />
         </div>
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

@@ -34,5 +34,6 @@ namespace LibrarySystem.DTO
         public string lastName = null;
         public int birthYear;
         public List<string> isbnList = new List<string>();
+        public List<string> nameList = new List<string>();
     }
 }

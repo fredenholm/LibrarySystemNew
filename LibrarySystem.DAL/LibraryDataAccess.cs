@@ -43,24 +43,27 @@ namespace LibrarySystem.DAL
 
             return dto;
         }
-        public static BookDTO getBookTitle(string Title)
+        public static string title;
+        public static List<BookDTO> getBookTitle(List<string> booklist)
         {
-            BookDTO dto = new BookDTO();
+            List<BookDTO> dtobooklist = new List<BookDTO>();
             string _connectionString = DataSource.GetConnectionString("library2");  // Make possible to define and use different connectionstrings 
             SqlConnection con = new SqlConnection(_connectionString);
-            SqlCommand cmd = new SqlCommand("SELECT * FROM book WHERE title = " + Title, con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM BOOK WHERE Title LIKE '%" + title + "%'", con);
             try
             {
                 con.Open();
                 SqlDataReader dar = cmd.ExecuteReader();
-                if (dar.Read())
+                while (dar.Read())
                 {
+                    BookDTO dto = new BookDTO();
                     dto.isbnNo = dar["ISBN"] as string;
                     dto.title = dar["Title"] as string;
                     dto.signId = (int)dar["SignId"];
                     dto.publicationYear = dar["PublicationYear"] as string;
                     dto.publisher = dar["Publisher"] as string;
                     dto.libNumber = (int)dar["LibNo"];
+                    dtobooklist.Add(dto);
                 }
             }
             catch (Exception er)
@@ -72,24 +75,30 @@ namespace LibrarySystem.DAL
                 con.Close();
             }
 
-            return dto;
+            return dtobooklist;
+
+
+
         }
-        public static AuthorDTO getAuthorName(string Name)
+        public static string name;
+        public static List<AuthorDTO> getAuthorName(List<string> authorlist)
         {
-            AuthorDTO dto = new AuthorDTO();
+            List<AuthorDTO> dtoauthorlist = new List<AuthorDTO>();
             string _connectionString = DataSource.GetConnectionString("library2");  // Make possible to define and use different connectionstrings 
             SqlConnection con = new SqlConnection(_connectionString);
-            SqlCommand cmd = new SqlCommand("SELECT * FROM AUTHOR WHERE FirstName = " + Name, con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM AUTHOR WHERE FirstName LIKE '%" + name + "%' OR LastName LIKE '%" + name + "%'", con);
             try
             {
                 con.Open();
                 SqlDataReader dar = cmd.ExecuteReader();
-                if (dar.Read())
+                while (dar.Read())
                 {
+                    AuthorDTO dto = new AuthorDTO();
                     dto.aId = (int)dar["Aid"];
                     dto.firstName = dar["FirstName"] as string;
                     dto.lastName = dar["LastName"] as string;
-                    dto.birthYear = (int)dar["BirthYear"];
+                    dto.birthYear = (dar["BirthYear"] == DBNull.Value) ? 0 : Convert.ToInt32(dar["BirthYear"].ToString());
+                    dtoauthorlist.Add(dto);
                 }
             }
             catch (Exception er)
@@ -101,7 +110,7 @@ namespace LibrarySystem.DAL
                 con.Close();
             }
 
-            return dto;
+            return dtoauthorlist;
         }
 
 
@@ -198,6 +207,47 @@ namespace LibrarySystem.DAL
             return dto;
         }
 
+        public static List<BookDTO> getAllBooksDalTitle(List<string> titleList)
+        {
+            List<BookDTO> dtoList = new List<BookDTO>();
+            string _connectionString = DataSource.GetConnectionString("library2");  // Make possible to define and use different connectionstrings 
+            SqlConnection con = new SqlConnection(_connectionString);
+            string titleListString = "";
+            // Concatenate all isbn-numbers, seperated with comma, into one string
+            int itemNo = 0;
+            foreach (string str in titleList)
+            {
+                itemNo++;
+                titleListString += str + (itemNo == titleList.Count ? "')" : "','");
+            }
+            SqlCommand cmd = new SqlCommand("SELECT * FROM BOOK WHERE Title IN ('" + titleListString, con);
+            try
+            {
+                con.Open();
+                SqlDataReader dar = cmd.ExecuteReader();
+                while (dar.Read())
+                {
+                    BookDTO dto = new BookDTO();
+                    dto.isbnNo = dar["ISBN"] as string;
+                    dto.title = dar["Title"] as string;
+                    dto.signId = (int)dar["SignId"];
+                    dto.publicationYear = dar["PublicationYear"] as string;
+                    dto.publisher = dar["Publisher"] as string;
+                    dto.libNumber = (int)dar["LibNo"];
+                    dtoList.Add(dto);
+                }
+            }
+            catch (Exception er)
+            {
+                throw er;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return dtoList;
+        }
         public static List<BookDTO> getAllBooksDAL()
         {
             List<BookDTO> dtoList = new List<BookDTO>();
@@ -215,10 +265,10 @@ namespace LibrarySystem.DAL
                     BookDTO dto = new BookDTO();
                     dto.isbnNo = dar["ISBN"] as string;
                     dto.title = dar["Title"] as string;
-                    /*                    newBook.location = dar["Location"] as string;
-                                        newBook.classificationCode = dar["ClassificationCode"] as string;
-                                        newBook.publicationInfo = dar["PublicationInfo"] as string;
-                                        newBook.pages = (dar["Pages"] == DBNull.Value) ? 0 : Convert.ToInt32(dar["Pages"].ToString()); */
+                    dto.signId = (int)dar["SignId"];
+                    dto.publicationYear = dar["PublicationYear"] as string;
+                    dto.publisher = dar["Publisher"] as string;
+                    dto.libNumber = (int)dar["LibNo"];
                     dtoList.Add(dto);
                 }
             }

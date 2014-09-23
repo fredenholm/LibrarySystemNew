@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs" Inherits="LibrarySystem.WebForm2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Page.Master" AutoEventWireup="true" CodeBehind="BookDetails.aspx.cs" Inherits="LibrarySystem.WebForm3" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-       <asp:Repeater ID="rptBooks" runat="server">
+    <asp:Repeater ID="rptBooksDetails" runat="server">
         <HeaderTemplate>
             <tr>
-                <th><%#Session["rptAuthorArg"] %></th>
+                <th><%#Session["rptBookArg"] %></th>
             </tr>
             <tr>
                 <th>ISBN</th>
@@ -17,6 +17,10 @@
             <tr>
                 <td><%#Eval("ISBN") %></td>
                 <td><%#Eval("Title") %></td>
+                <td><%#Eval("SignId") %></td>
+                <td><%#Eval("PublicationYear") %></td>
+                <td><%#Eval("Publisher") %></td>
+                <td><%#Eval("LibNo") %></td>
             </tr>
             <br/>
         </ItemTemplate>

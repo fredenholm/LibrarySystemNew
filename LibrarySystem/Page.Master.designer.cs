@@ -13,6 +13,15 @@ namespace LibrarySystem {
     public partial class Page {
         
         /// <summary>
+        /// Head1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+        
+        /// <summary>
         /// head control.
         /// </summary>
         /// <remarks>
@@ -55,7 +64,7 @@ namespace LibrarySystem {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor getBooks;
+        protected global::System.Web.UI.WebControls.Button getBooks;
         
         /// <summary>
         /// lblBookId control.
@@ -82,7 +91,7 @@ namespace LibrarySystem {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor getBookDetails;
+        protected global::System.Web.UI.WebControls.Button getBookDetails;
         
         /// <summary>
         /// lblAuthor control.
@@ -109,16 +118,7 @@ namespace LibrarySystem {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor getAuthorDetails;
-        
-        /// <summary>
-        /// login1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button login1;
+        protected global::System.Web.UI.WebControls.Button getAuthorDetails;
         
         /// <summary>
         /// ContentPlaceHolder1 control.

@@ -78,6 +78,16 @@ namespace LibrarySystem.BL
             }
             set { _BorrowDTO.BorrowDate = value; }
         }
+        public List<string> PersonList
+        {
+            get
+            {
+                Load();
+                return _BorrowDTO.personList;
+            }
+            set { _BorrowDTO.personList = value; }
+
+        }
         
         #endregion  //Properties
 
@@ -100,7 +110,47 @@ namespace LibrarySystem.BL
         #endregion //private methods
 
         #region public methods
-        
+        public static List<Borrow> getBorrowStatus(string personId)
+        {
+            List<BorrowDTO> dtolist = null;
+            if (string.IsNullOrEmpty(personId))
+            {
+                //print that the borrower got 0 books
+            }
+            else
+            {
+                LibraryDataAccess.Person = personId;
+                Borrow BorrowObject = new Borrow();
+                dtolist = LibraryDataAccess.getBorrowbyPersonId(BorrowObject.PersonList);
+            }
+            List<Borrow> results = new List<Borrow>();
+            foreach (BorrowDTO dto in dtolist)
+            {
+                Borrow item = new Borrow(dto);
+                results.Add(item);
+            }
+            return results;
+        }
+        public static List<Book> getBorrowerBooks(string personId)
+        {
+            List<BookDTO> dtolist = null;
+            if (string.IsNullOrEmpty(personId))
+            {
+                // something
+            }
+            else
+            {
+                LibraryDataAccess.Person = personId;
+                dtolist = LibraryDataAccess.getBorrowerBook(personId);
+            }
+            List<Book> results = new List<Book>();
+            foreach(BookDTO dto in dtolist)
+            {
+                Book item = new Book(dto);
+                results.Add(item);
+            }
+            return results;
+           }
        
         #endregion
         }

@@ -35,6 +35,6 @@ namespace LibrarySystem.DTO
         public int Categoryid;
         public string Telno = null;
         public string Address = null;
-        //public List<string> isbnList = new List<string>();
+        public List<string> personList = new List<string>();
     }
 }

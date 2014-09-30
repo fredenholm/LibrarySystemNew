@@ -30,5 +30,6 @@ namespace LibrarySystem.DTO
             public DateTime ReturnDate;
             public string barcode = null;
             public string PersonId = null;
+            public List<string> personList = new List<string>();
         }
     }

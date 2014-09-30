@@ -32,5 +32,10 @@ namespace LibrarySystem
             Session["AuthorDetails"] = txtAuthorTitle.Text;
             Response.Redirect("AuthorDetails.aspx");
         }
+
+        protected void LoginBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
+        }
     }
 }

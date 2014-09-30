@@ -421,24 +421,27 @@ namespace LibrarySystem.DAL
             }
             return dto;
         }
-        public static BorrowerDTO getBorrowerPersonId(string PersonId)
+        public static string Person;
+        public static List<BorrowerDTO> getBorrowerPersonId(List<string> booklist)
         {
-            BorrowerDTO dto = new BorrowerDTO();
+            List<BorrowerDTO> dtoborrowerlist = new List<BorrowerDTO>();
             string _connectionString = DataSource.GetConnectionString("library2");  // Make possible to define and use different connectionstrings 
             SqlConnection con = new SqlConnection(_connectionString);
-            SqlCommand cmd = new SqlCommand("SELECT * FROM BORROWER WHERE PersonId = '19111111-1111'", con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM BORROWER WHERE PersonId = '" + Person + "'", con);
             try
             {
                 con.Open();
                 SqlDataReader dar = cmd.ExecuteReader();
                 if (dar.Read())
                 {
+                    BorrowerDTO dto = new BorrowerDTO();
                     dto.Categoryid = (int)dar["Categoryid"];
                     dto.firstName = dar["FirstName"] as string;
                     dto.lastName = dar["LastName"] as string;
                     dto.Address = dar["Address"] as string;
                     dto.Telno = dar["TelNo"] as string;
                     dto.PersonId = dar["PersonId"] as string;
+                    dtoborrowerlist.Add(dto);
                 }
             }
             catch (Exception er)
@@ -450,7 +453,150 @@ namespace LibrarySystem.DAL
                 con.Close();
             }
 
-            return dto;
+            return dtoborrowerlist;
+        }
+        public static List<BorrowDTO> getBorrowbyPersonId(List<string> personList)
+        {
+            List<BorrowDTO> dtoborrowerlist = new List<BorrowDTO>();
+            string _connectionString = DataSource.GetConnectionString("library2");  // Make possible to define and use different connectionstrings 
+            SqlConnection con = new SqlConnection(_connectionString);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM BORROW WHERE BORROW.PersonId = '" + personList + "'", con);
+            try
+            {
+                con.Open();
+                SqlDataReader dar = cmd.ExecuteReader();
+                if (dar.Read())
+                {
+                    BorrowDTO dto = new BorrowDTO();
+                    dto.BorrowDate = (DateTime)dar["BorrowDate"];
+                    dto.ToBeReturnedDate = (DateTime)dar["ToBeReturnedDate"];
+                    dto.ReturnDate = (DateTime)dar["ReturnDate"];
+                    dto.barcode = dar["barcode"] as string;
+                    dto.PersonId = dar["personid"] as string;
+                    dtoborrowerlist.Add(dto);
+                }
+            }
+            catch (Exception er)
+            {
+                throw er;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return dtoborrowerlist;
+        }
+        public static List<BookDTO> getBorrowerBook(string personId)
+        {
+            List<BookDTO> dtoborrowList = new List<BookDTO>();
+            string _connectionString = DataSource.GetConnectionString("library2");  // Make possible to define and use different connectionstrings 
+            SqlConnection con = new SqlConnection(_connectionString);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM BOOK WHERE BOOK.ISBN = (SELECT ISBN FROM COPY WHERE COPY.Barcode =(SELECT BARCODE FROM BORROW WHERE BORROW.PersonId='" + personId + "'));", con);
+            try
+            {
+                con.Open();
+                SqlDataReader dar = cmd.ExecuteReader();
+                if (dar.Read())
+                {
+                    BookDTO dto = new BookDTO();
+                    dto.isbnNo = dar["ISBN"] as string;
+                    dto.title = dar["Title"] as string;
+                    dto.signId = (int)dar["SignId"];
+                    dto.publicationYear = dar["PublicationYear"] as string;
+                    dto.publisher = dar["Publisher"] as string;
+                    dto.libNumber = (int)dar["LibNo"];
+                    dtoborrowList.Add(dto);
+
+                }
+            }
+            catch (Exception er)
+            {
+                throw er;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return dtoborrowList;
+        }
+        public static List<UserDTO> getAllUsersDAL()
+        {
+            List<UserDTO> userDTOList = new List<UserDTO>();
+
+            //Connect to the database and read all authors
+            string _connectionString = DataSource.GetConnectionString("library2");  // Make possible to define and use different connectionstrings 
+            SqlConnection con = new SqlConnection(_connectionString);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM USR", con);
+            try
+            {
+                con.Open();
+                SqlDataReader dar = cmd.ExecuteReader();
+                while (dar.Read())
+                {
+                    UserDTO dto = new UserDTO();
+                    dto.PersonId = dar["PersonId"] as string;
+                    dto.Username = dar["Username"] as string;
+                    dto.Password = dar["Password"] as string;
+                    dto.email = dar["email"] as string;
+                    dto.Isadmin = (int)dar["Isadmin"];
+                    dto.loadStatus = LoadStatus.Ghost;  //Since we are not retrieving the isbn-number list
+                    userDTOList.Add(dto);
+                }
+            }
+            catch (Exception er)
+            {
+                throw er;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return userDTOList;
+        }
+        public static string getUserId(string userid)
+        {
+            string _connectionString = DataSource.GetConnectionString("library2");  // Make possible to define and use different connectionstrings 
+            SqlConnection con = new SqlConnection(_connectionString);
+            SqlCommand cmd = new SqlCommand("SELECT USR.PersonID FROM USR WHERE USR.Username = + '" + userid + "'", con);
+            try
+            {
+                con.Open();
+                SqlDataReader dar = cmd.ExecuteReader();
+                if (dar.Read())
+                {
+                    Person = dar["PersonId"] as string;
+                }
+            }
+            catch (Exception er)
+            {
+                throw er;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return Person;
+        }
+        public static void createUser(string personId, string username, string password, string email, int isadmin)
+        {
+            string _connectionString = DataSource.GetConnectionString("library2");  // Make possible to define and use different connectionstrings 
+            SqlConnection con = new SqlConnection(_connectionString);
+            SqlCommand cmd = new SqlCommand("INSERT INTO [USR]([PersonId],[Username],[Password],[email],[Isadmin])VALUES('" + personId + "','" + username + "',PWDENCRYPT('" + password + "'),'" + email + "','" + isadmin + "');", con);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception er)
+            {
+                throw er;
+            }
+            finally
+            {
+                con.Close();
+            }
         }
     }
 }

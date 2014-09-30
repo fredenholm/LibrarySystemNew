@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using LibrarySystem.DTO;
 using LibrarySystem.DAL;
 
@@ -88,17 +88,17 @@ namespace LibrarySystem.BL
             set { _BorrowerDTO.Categoryid = value; }
         }
 
+        
+        public List<string> personList
+        {
+            get
+            {
+                Load();
+                return _BorrowerDTO.personList;
+            }
+            set { _BorrowerDTO.personList = value; }
 
-        //public List<string> IsbnList
-        //{
-        //    get
-        //    {
-        //        Load();
-        //        return _BorrowerDTO.isbnList;
-        //    }
-        //    set { _BorrowerDTO.isbnList = value; }
-
-        //}
+        }
         #endregion  //Properties
 
         #region private methods
@@ -132,12 +132,9 @@ namespace LibrarySystem.BL
             }
             else
             {
-                //Fetch the correct AuthorDTO object and connect an Author object for it
-                BorrowerDTO dto = LibraryDataAccess.getBorrowerPersonId(PersonId);
-                dto.loadStatus = LoadStatus.Ghost; //Force it to load all data
-                Borrower BorrowerObject = new Borrower(dto);
-                // Use the author objects IsbnList property 
-                dtoList = LibraryDataAccess.getAllBorrowerDAL();
+                LibraryDataAccess.Person = PersonId;
+                Borrower BorrowerObject = new Borrower();
+                dtoList = LibraryDataAccess.getBorrowerPersonId(BorrowerObject.personList);
             }
             // Convert to Book objects since UI only references BL (not DAL or DTO)
             List<Borrower> results = new List<Borrower>();
@@ -162,54 +159,27 @@ namespace LibrarySystem.BL
             }
             return results;
         }
-       /* public static List<Author> getAuthorByName(string Name)
+        public bool update()
         {
-            List<BorrowerDTO> dtoList = null; ;
-            // This method retrieves a list of all books in the library system
-            if (string.IsNullOrEmpty(Name))
+            bool updateflag = true;
+            try
             {
-                dtoList = LibraryDataAccess.getAllAuthorsDAL();  //BookDTO is the interface common for BL and DAL
+                if (_BorrowerDTO.loadStatus == LoadStatus.Loaded)
+                {
+                    //authordal.updateauthor.updateauthor(_authordto);
+                    _BorrowerDTO.loadStatus = LoadStatus.Ghost;
+                }
+                else
+                {
+                    updateflag = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                //Fetch the correct AuthorDTO object and connect an Author object for it
-                BorrowerDTO dto = LibraryDataAccess.getAuthorName(Name);
-                dto.loadStatus = LoadStatus.Ghost; //Force it to load all data
-                Author AuthorObject = new Author(dto);
-                // Use the author objects IsbnList property 
-                dtoList = LibraryDataAccess.getAllAuthorsDAL();
+                //do some error-log functionality with ex.data
             }
-            // Convert to Book objects since UI only references BL (not DAL or DTO)
-            List<Author> results = new List<Author>();
-            foreach (BorrowerDTO dto in dtoList)
-            {
-                Author item = new Author(dto);
-                results.Add(item);
-            }
-            return results;
-        }*/
-
-        //public bool Update()
-        //{
-        //    bool updateFlag = true;
-        //    try
-        //    {
-        //        if (_BorrowerDTO.loadStatus == LoadStatus.Loaded)
-        //        {
-        //            //AuthorDAL.UpdateAuthor.UpdateAuthor(_authorDTO);
-        //            _BorrowerDTO.loadStatus = LoadStatus.Ghost;
-        //        }
-        //        else
-        //        {
-        //            updateFlag = false;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        //Do some error-log functionality with ex.Data
-        //    }
-        //    return updateFlag;
-        //}
+            return updateflag;
+        }
         #endregion  //Public methods
     }  //End Class
 }

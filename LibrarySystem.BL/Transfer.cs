@@ -10,7 +10,7 @@ namespace LibrarySystem.BL
 {
     public class Transfer
     {
-        public static string UserName = "19111111-1111";
+        public static string UserName;
         
         
     }

@@ -59,6 +59,7 @@
     <Compile Include="borrowDTO.cs" />
     <Compile Include="BorrowerDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

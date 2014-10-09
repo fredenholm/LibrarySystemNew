@@ -180,6 +180,10 @@ namespace LibrarySystem.BL
             }
             return updateflag;
         }
+        public static void CreateBorrower(string PersonId, string Firstname, string Lastname, string address, string Telno, int catergoryId)
+        {
+            LibraryDataAccess.createBorrower(PersonId, Firstname, Lastname, address, Telno, catergoryId);
+        }
         #endregion  //Public methods
     }  //End Class
 }

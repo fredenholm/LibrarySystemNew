@@ -106,6 +106,25 @@ namespace LibrarySystem.BL
             }
             return results;
         }
+        public static void CreateUser(string PersonId, string Username, string password, string email, int isAdmin)
+        {
+            LibraryDataAccess.createUser(PersonId, Username, password, email, isAdmin);
+        }
+        public static string PersonIdExist(string PersonId)
+        {
+            String Person = LibraryDataAccess.PersonIdExists(PersonId);
+            return Person;
+        }
+        public static string UsernameExists(string Username)
+        {
+            String UsrName = LibraryDataAccess.UserExists(Username);
+            return UsrName;
+        }
+        public static string PasswordMatch(string Username, string Password)
+        {
+            String UsrName = LibraryDataAccess.PasswordMatch(Username, Password);
+            return UsrName;
+        }
         #endregion  //Public methods
     }  //End Class
 }

@@ -19,22 +19,42 @@ namespace LibrarySystem
         {
             if (UserInput.Text.Length > 0)
             {
-                Transfer.UserName = UserInput.Text;
-                Response.Redirect("Borrowers.aspx");
+                if(string.IsNullOrEmpty(BL.Usr.UsernameExists(UserInput.Text)) || string.IsNullOrEmpty(BL.Usr.PasswordMatch(UserInput.Text, PasswordInput.Text)))
+                {
+                    Error();
+                }
+                else
+                {
+                    ErrorCleanup();
+                    Transfer.UserName = UserInput.Text;
+                    Response.Redirect("Borrowers.aspx");
+                }
             }
             else
             {
                 UserInput.BackColor = System.Drawing.Color.Red;
             }
-            if (PasswordInput.Text.Length <= 0)
+            if (PasswordInput.Text.Length > 0)
+            {
+                BL.Usr.PasswordMatch(UserInput.Text, PasswordInput.Text);
+            }
+            else
             {
                 PasswordInput.BackColor = System.Drawing.Color.Red;
             }
         }
+        protected void Error()
+        {
+            ErrorLabel.Text = "Wrong username or password";
+        }
+        protected void ErrorCleanup()
+        {
+            ErrorLabel.Text = " ";
+        }
 
         protected void createBtn_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("CreateUser.aspx");
         }
 
         protected void UserInput_TextChanged(object sender, EventArgs e)

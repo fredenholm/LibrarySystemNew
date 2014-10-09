@@ -26,3 +26,10 @@ C:\Users\Huggan\Documents\Visual Studio 2012\Projects\LibrarySystemNew\LibrarySy
 C:\Users\Huggan\Documents\Visual Studio 2012\Projects\LibrarySystemNew\LibrarySystem.DAL\obj\Debug\LibrarySystem.DAL.csprojResolveAssemblyReference.cache
 C:\Users\Huggan\Documents\Visual Studio 2012\Projects\LibrarySystemNew\LibrarySystem.DAL\obj\Debug\LibrarySystem.DAL.dll
 C:\Users\Huggan\Documents\Visual Studio 2012\Projects\LibrarySystemNew\LibrarySystem.DAL\obj\Debug\LibrarySystem.DAL.pdb
+C:\Users\Huggan\Documents\Visual Studio 2013\Projects\LibrarySystemNew\LibrarySystem.DAL\bin\Debug\LibrarySystem.DAL.dll
+C:\Users\Huggan\Documents\Visual Studio 2013\Projects\LibrarySystemNew\LibrarySystem.DAL\bin\Debug\LibrarySystem.DAL.pdb
+C:\Users\Huggan\Documents\Visual Studio 2013\Projects\LibrarySystemNew\LibrarySystem.DAL\bin\Debug\LibrarySystem.DTO.dll
+C:\Users\Huggan\Documents\Visual Studio 2013\Projects\LibrarySystemNew\LibrarySystem.DAL\bin\Debug\LibrarySystem.DTO.pdb
+C:\Users\Huggan\Documents\Visual Studio 2013\Projects\LibrarySystemNew\LibrarySystem.DAL\obj\Debug\LibrarySystem.DAL.csprojResolveAssemblyReference.cache
+C:\Users\Huggan\Documents\Visual Studio 2013\Projects\LibrarySystemNew\LibrarySystem.DAL\obj\Debug\LibrarySystem.DAL.dll
+C:\Users\Huggan\Documents\Visual Studio 2013\Projects\LibrarySystemNew\LibrarySystem.DAL\obj\Debug\LibrarySystem.DAL.pdb

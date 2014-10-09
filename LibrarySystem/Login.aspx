@@ -5,5 +5,6 @@
     <asp:Label runat="server" Text="LOGIN"></asp:Label><br /><br />
     <asp:Label runat="server" Text="User Name: "></asp:Label><asp:TextBox runat="server" ID="UserInput" OnTextChanged="UserInput_TextChanged"></asp:TextBox><br />
     <asp:Label runat="server" Text="Password: " ></asp:Label><asp:TextBox runat="server" ID="PasswordInput" TextMode="Password" OnTextChanged="PasswordInput_TextChanged"></asp:TextBox><br />
+    <asp:Label runat="server" ID="ErrorLabel" BackColor="Red"></asp:Label><br />
     <asp:Button runat="server" Text="Log in" id="loginBtn" OnClick="loginBtn_Click" /><asp:Button runat="server" Text="Create User" ID="createBtn" OnClick="createBtn_Click"/>
 </asp:Content>

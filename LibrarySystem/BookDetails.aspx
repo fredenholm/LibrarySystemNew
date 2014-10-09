@@ -2,27 +2,40 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
     <asp:Repeater ID="rptBooksDetails" runat="server">
+        
         <HeaderTemplate>
+           
             <tr>
                 <th><%#Session["rptBookArg"] %></th>
             </tr>
-            <tr>
-                <th>ISBN</th>
-                <th>Title</th>
-            </tr>
+            <div class="thpos">
+                <table>
+                    <th class="td30">ISBN</th>
+                    <th>Title</th>
+                    <th class="td20">SId</th>
+                    <th class="td20">PY</th>
+                    <th class="td20">Pub</th>
+                    <th class="td20">LibNo</th>
+                </table>
+            </div>
             <br/>
+            <br />
         </HeaderTemplate>
+       
+        
         <ItemTemplate>
-            <tr>
-                <td><%#Eval("ISBN") %></td>
+            <table>
+                <td class="td30"><%#Eval("ISBN") %></td>
                 <td><%#Eval("Title") %></td>
-                <td><%#Eval("SignId") %></td>
-                <td><%#Eval("PublicationYear") %></td>
-                <td><%#Eval("Publisher") %></td>
-                <td><%#Eval("LibNo") %></td>
-            </tr>
+                <td class="td20"><%#Eval("SignId") %></td>
+                <td class="td20"><%#Eval("PublicationYear") %></td>
+                <td class="td20"><%#Eval("Publisher") %></td>
+                <td class="td20"><%#Eval("LibNo") %></td>
+            </table>
             <br/>
         </ItemTemplate>
+            
     </asp:Repeater>
 </asp:Content>

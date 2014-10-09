@@ -11,7 +11,7 @@ namespace LibrarySystem.BL
     // Requires references to LirarySystem.DTO and LibrarySystem.DAL
     public class Author
     {
-        public static int counter;
+        public static int counter = 1772;
         private AuthorDTO _authorDTO;
 
         #region constructors
@@ -121,6 +121,54 @@ namespace LibrarySystem.BL
         {
             // This method retrieves a list of all authors in the library system
             List<AuthorDTO> dtoList = LibraryDataAccess.getAllAuthorsDAL();  //AuthorDTO is the interface common for BL and DAL
+
+            // Convert to Author objects
+            List<Author> results = new List<Author>();
+            foreach (AuthorDTO dto in dtoList)
+            {
+                Author item = new Author(dto);
+                results.Add(item);
+            }
+            return results;
+        }
+        public static string disableBtn = "";
+        public static List<Author> getAllBy20(string Direction)
+        {
+            // This method retrieves a list of all authors in the library system
+            List<AuthorDTO> dtoList = new List<AuthorDTO>();
+            if(Direction == "previous")
+            {
+                if(counter >= LibraryDataAccess.getFirstAuthor() + 20)
+                {
+                    counter -= 20;
+                    dtoList.Clear();
+                    dtoList = LibraryDataAccess.getAllAuthorsDALBy20(counter);  //AuthorDTO is the interface common for BL and DAL
+                    disableBtn = "";
+                }
+                else
+                {
+                    disableBtn = "previous";
+                }
+            }
+            else if(Direction == "next")
+            {
+                if(counter <= LibraryDataAccess.getLastAuthor() -20)
+                {
+                    counter += 20;
+                    dtoList.Clear();
+                    dtoList = LibraryDataAccess.getAllAuthorsDALBy20(counter);
+                    disableBtn = "";
+                }
+                else
+                {
+                    disableBtn = "next";
+                }
+            }
+            else if(Direction == "")
+            {
+                dtoList.Clear();
+                    dtoList = LibraryDataAccess.getAllAuthorsDALBy20(counter);  //AuthorDTO is the interface common for BL and DAL
+            }
 
             // Convert to Author objects
             List<Author> results = new List<Author>();

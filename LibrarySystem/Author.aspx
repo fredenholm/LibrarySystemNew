@@ -34,7 +34,7 @@
                 <br/>
             </ItemTemplate>
         </asp:Repeater>
-        <asp:Button ID="PreviousBtn" runat="server" Text="Previous" OnClick="PreviousBtn_Click"/>
+        <asp:Button ID="PreviousBtn" runat="server" Text="Previous" OnClick="PreviousBtn_Click" Enabled="false"/>
         <asp:Button ID="NextBtn" runat="server" Text="Next" OnClick="NextBtn_Click"/>
     </div>
 </asp:Content>

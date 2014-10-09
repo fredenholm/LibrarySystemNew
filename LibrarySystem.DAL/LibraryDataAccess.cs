@@ -175,6 +175,93 @@ namespace LibrarySystem.DAL
             }
             return authorDtoList;
         }
+        public static int getFirstAuthor()
+        {
+            int FirstId = 0;
+            string _connectionString = DataSource.GetConnectionString("library2");  // Make possible to define and use different connectionstrings 
+            SqlConnection con = new SqlConnection(_connectionString);
+            SqlCommand cmd = new SqlCommand("SELECT TOP 1 Aid FROM AUTHOR", con);
+            try
+            {
+                con.Open();
+                SqlDataReader dar = cmd.ExecuteReader();
+                if (dar.Read())
+                {
+                    FirstId = (int)dar["Aid"];
+                }
+            }
+            catch (Exception er)
+            {
+                throw er;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return FirstId;
+        }
+        public static int getLastAuthor()
+        {
+            int LastId = 0;
+            string _connectionString = DataSource.GetConnectionString("library2");  // Make possible to define and use different connectionstrings 
+            SqlConnection con = new SqlConnection(_connectionString);
+            SqlCommand cmd = new SqlCommand("SELECT Aid FROM(SELECT TOP 1 Aid FROM AUTHOR ORDER BY Aid DESC) SQ ORDER BY Aid ASC", con);
+            try
+            {
+                con.Open();
+                SqlDataReader dar = cmd.ExecuteReader();
+                if (dar.Read())
+                {
+                    LastId = (int)dar["Aid"];
+                }
+            }
+            catch (Exception er)
+            {
+                throw er;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return LastId;
+        }
+
+        public static List<AuthorDTO> getAllAuthorsDALBy20(int counter)
+        {
+            int low = counter;
+            int high = counter + 20;
+            List<AuthorDTO> authorDtoList = new List<AuthorDTO>();
+            //Connect to the database and read all authors
+            string _connectionString = DataSource.GetConnectionString("library2");  // Make possible to define and use different connectionstrings 
+            SqlConnection con = new SqlConnection(_connectionString);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM AUTHOR WHERE Aid BETWEEN " + low + " AND " + high + "", con);
+            try
+            {
+                con.Open();
+                SqlDataReader dar = cmd.ExecuteReader();
+                while (dar.Read())
+                {
+                    AuthorDTO dto = new AuthorDTO();
+                    dto.aId = (int)dar["Aid"];
+                    dto.firstName = dar["FirstName"] as string;
+                    dto.lastName = dar["LastName"] as string;
+                    dto.birthYear = (dar["BirthYear"] == DBNull.Value) ? 0 : Convert.ToInt32(dar["BirthYear"].ToString());
+                    dto.loadStatus = LoadStatus.Ghost;  //Since we are not retrieving the isbn-number list
+                    authorDtoList.Add(dto);
+                }
+            }
+            catch (Exception er)
+            {
+                throw er;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return authorDtoList;
+        }
 
         public static BookDTO loadBookDAL(string isbn)
         {
@@ -597,6 +684,100 @@ namespace LibrarySystem.DAL
             {
                 con.Close();
             }
+        }
+        public static void createBorrower(string personId, string Firstname, string Lastname, string address, string Telno, int categoryId)
+        {
+            string _connectionString = DataSource.GetConnectionString("library2");
+            SqlConnection con = new SqlConnection(_connectionString);
+            SqlCommand cmd = new SqlCommand("INSERT INTO BORROWER(PersonId,FirstName,LastName,Address,Telno,CategoryId)VALUES('" + personId + "','" + Firstname + "', '" + Lastname + "', '" + address + "', '" + Telno + "', '" + categoryId + "');", con);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch(Exception er)
+            {
+                throw er;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        public static string PersonIdExists(string PersonId)
+        {
+            string _connectionString = DataSource.GetConnectionString("library2");
+            SqlConnection con = new SqlConnection(_connectionString);
+            SqlCommand cmd = new SqlCommand("SELECT PersonId FROM USR WHERE PersonId = + '" + PersonId + "'", con);
+            try
+            {
+                con.Open();
+                SqlDataReader dar = cmd.ExecuteReader();
+                if (dar.Read())
+                {
+                    Person = dar["PersonId"] as string;
+                }
+            }
+            catch (Exception er)
+            {
+                throw er;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return Person;
+        }
+        public static string Username;
+        public static string UserExists(string Username)
+        {
+            string _connectionstring = DataSource.GetConnectionString("library2");
+            SqlConnection con = new SqlConnection(_connectionstring);
+            SqlCommand cmd = new SqlCommand("SELECT Username FROM USR WHERE Username = + '" + Username + "'", con);
+            try
+            {
+                con.Open();
+                SqlDataReader dar = cmd.ExecuteReader();
+                if(dar.Read())
+                {
+                    Username = dar["Username"] as string;
+                }
+            }
+            catch(Exception er)
+            {
+                throw er;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return Username;
+        }
+        public static string PasswordMatch(string username, string Password)
+        {
+            string confirmPassword = null;
+            string _connectionstring = DataSource.GetConnectionString("library2");
+            SqlConnection con = new SqlConnection(_connectionstring);
+            SqlCommand cmd = new SqlCommand("SELECT Username FROM USR WHERE Username = '" + username + "' AND PWDCOMPARE('" + Password + "',Password) = 1", con);
+            try
+            {
+                con.Open();
+                SqlDataReader dar = cmd.ExecuteReader();
+                if(dar.Read())
+                {
+                    confirmPassword = dar["Username"] as string;
+                    // currently get 0, must get 1 if the plain text PW matches the encrypted PW in the db
+                }
+            }
+            catch(Exception er)
+            {
+                throw er;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return confirmPassword;
         }
     }
 }

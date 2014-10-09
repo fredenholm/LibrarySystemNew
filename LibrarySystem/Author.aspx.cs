@@ -15,7 +15,7 @@ namespace LibrarySystem
         {
             if (!Page.IsPostBack)
             {
-                rptAuthors.DataSource = Author.getAll();
+                rptAuthors.DataSource = Author.getAllBy20("");
                 rptAuthors.DataBind();
 
             }
@@ -29,15 +29,32 @@ namespace LibrarySystem
 
         protected void PreviousBtn_Click(object sender, EventArgs e)
         {
-            rptAuthors.DataSource = Author.getAllbyCount("previous");
+            disablePrevBtn();
+            rptAuthors.DataSource = Author.getAllBy20("previous");
             rptAuthors.DataBind();
         }
 
         protected void NextBtn_Click(object sender, EventArgs e)
         {
-            rptAuthors.DataSource = Author.getAllbyCount("next");
+            disablePrevBtn();
+            rptAuthors.DataSource = Author.getAllBy20("next");
             rptAuthors.DataBind();
         }
-
+        public void disablePrevBtn()
+        {
+            if(BL.Author.disableBtn == "previous")
+            {
+                PreviousBtn.Enabled = false;
+            }
+            else if(BL.Author.disableBtn == "next")
+            {
+                NextBtn.Enabled = false;
+            }
+            else if(BL.Author.disableBtn == "")
+            {
+                NextBtn.Enabled = true;
+                PreviousBtn.Enabled = true;
+            }
+        }
     }
 }

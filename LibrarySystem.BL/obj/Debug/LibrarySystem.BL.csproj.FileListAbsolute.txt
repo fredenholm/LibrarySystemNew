@@ -52,3 +52,12 @@ C:\Users\Huggan\Documents\Visual Studio 2013\Projects\LibrarySystemNew\LibrarySy
 C:\Users\Huggan\Documents\Visual Studio 2013\Projects\LibrarySystemNew\LibrarySystem.BL\obj\Debug\LibrarySystem.BL.csprojResolveAssemblyReference.cache
 C:\Users\Huggan\Documents\Visual Studio 2013\Projects\LibrarySystemNew\LibrarySystem.BL\obj\Debug\LibrarySystem.BL.dll
 C:\Users\Huggan\Documents\Visual Studio 2013\Projects\LibrarySystemNew\LibrarySystem.BL\obj\Debug\LibrarySystem.BL.pdb
+C:\Users\Huggan\Documents\LibrarySystemNew\LibrarySystem.BL\bin\Debug\LibrarySystem.BL.dll
+C:\Users\Huggan\Documents\LibrarySystemNew\LibrarySystem.BL\bin\Debug\LibrarySystem.BL.pdb
+C:\Users\Huggan\Documents\LibrarySystemNew\LibrarySystem.BL\bin\Debug\LibrarySystem.DAL.dll
+C:\Users\Huggan\Documents\LibrarySystemNew\LibrarySystem.BL\bin\Debug\LibrarySystem.DTO.dll
+C:\Users\Huggan\Documents\LibrarySystemNew\LibrarySystem.BL\bin\Debug\LibrarySystem.DAL.pdb
+C:\Users\Huggan\Documents\LibrarySystemNew\LibrarySystem.BL\bin\Debug\LibrarySystem.DTO.pdb
+C:\Users\Huggan\Documents\LibrarySystemNew\LibrarySystem.BL\obj\Debug\LibrarySystem.BL.csprojResolveAssemblyReference.cache
+C:\Users\Huggan\Documents\LibrarySystemNew\LibrarySystem.BL\obj\Debug\LibrarySystem.BL.dll
+C:\Users\Huggan\Documents\LibrarySystemNew\LibrarySystem.BL\obj\Debug\LibrarySystem.BL.pdb

@@ -13,24 +13,26 @@
             padding:5px;
      	}
     </style>
-    <div class="Author-Box">
+    <div>
         <asp:Repeater ID="rptAuthors" runat="server">
             <HeaderTemplate>
-                <tr>
+                <table>
                     <th>Author id</th>
                     <th>First name</th>
                     <th>Last name</th>
                     <th>Birth year</th>
-                </tr>
+                    <th>AuthorBooks</th>
+                </table>
                 <br/>
             </HeaderTemplate>
             <ItemTemplate>
-                <tr>
+                <table>
                     <td><%#Eval("Aid") %></td>
-                    <td><asp:Button ID="AuthorFNBtn" Text='<%#Eval("FirstName") %>' CommandArgument='<%#Eval("Aid") %>' runat="server" CommandName="Author" OnCommand="AuthorFNBtn_Command" /></td>
+                    <td><%#Eval("FirstName") %></td>
                     <td><%#Eval("LastName") %></td>
                     <td><%#Eval("BirthYear") %></td>
-                </tr>
+                    <td><asp:Button ID="AuthorBooks" Text="Details" CommandArgument='<%#Eval("Aid") %>' runat="server" CommandName="Author" OnCommand="AuthorBooks_Command" /></td>
+                </table>
                 <br/>
             </ItemTemplate>
         </asp:Repeater>

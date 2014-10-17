@@ -12,9 +12,17 @@ namespace LibrarySystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            rptBooks.DataSource = Book.getAll(Session["AuthorId"] as string);
-            rptBooks.DataBind();
+            if(!Page.IsPostBack)
+            {
+                rptBooks.DataSource = Book.getAll(Session["AuthorId"] as string);
+                rptBooks.DataBind();
+            }
+        }
 
+        protected void BookDetails_Command(object sender, CommandEventArgs e)
+        {
+            Session["ISBN"] = e.CommandArgument;
+            Response.Redirect("BookDetails.aspx");
         }
     }
 }

@@ -18,6 +18,7 @@
                 <table>
                     <th>ISBN</th>
                     <th>Title</th>
+                    <th>Details</th>
                 </table>
                
             </div>
@@ -28,6 +29,7 @@
             <table>
                 <td><%#Eval("ISBN") %></td>
                 <td><%#Eval("Title") %></td>
+                <td><asp:Button ID="BookDetails" Text="Details" CommandArgument='<%#Eval("ISBN") %>' runat="server" CommandName="BookDet" OnCommand="BookDetails_Command" /></td>
             </table>
             <br/>
         </ItemTemplate>

@@ -182,7 +182,7 @@ namespace LibrarySystem.BL
             return results;
         }
 
-        public static List<Book> getBookByTitle(string Title)
+        public static List<Book> getBookByISBN(string Title)
         {
             List<BookDTO> dtoList = null; ;
             if (string.IsNullOrEmpty(Title))
@@ -195,7 +195,7 @@ namespace LibrarySystem.BL
                 LibraryDataAccess.title = Title;
                 //Fetch the correct AuthorDTO object and connect an Author object for it
                 Book Bookobject = new Book();
-                dtoList = LibraryDataAccess.getBookTitle(Bookobject.TitleList);
+                dtoList = LibraryDataAccess.getBookISBN(Bookobject.TitleList);
             }
             List<Book> results = new List<Book>();
             foreach (BookDTO dto in dtoList)

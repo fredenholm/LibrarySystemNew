@@ -132,36 +132,49 @@ namespace LibrarySystem.BL
             return results;
         }
         public static string disableBtn = "";
+        /// <summary>
+        /// A function for sorting the right objects in the list
+        /// by pushin prev och next button
+        /// </summary>
+        /// <param name="Direction"></param>
+        /// <returns></returns>
         public static List<Author> getAllBy20(string Direction)
         {
             // This method retrieves a list of all authors in the library system
             List<AuthorDTO> dtoList = new List<AuthorDTO>();
             if(Direction == "previous")
             {
-                if(counter >= LibraryDataAccess.getFirstAuthor() + 20)
+                if(counter <= (LibraryDataAccess.getFirstAuthor() + 20))
                 {
+                    disableBtn = "previous";
                     counter -= 20;
                     dtoList.Clear();
-                    dtoList = LibraryDataAccess.getAllAuthorsDALBy20(counter);  //AuthorDTO is the interface common for BL and DAL
-                    disableBtn = "";
+                    dtoList = LibraryDataAccess.getAllAuthorsDALBy20(counter);
                 }
                 else
                 {
-                    disableBtn = "previous";
+                    disableBtn = "";
+                    counter -= 20;
+                    dtoList.Clear();
+                    dtoList = LibraryDataAccess.getAllAuthorsDALBy20(counter);
                 }
             }
             else if(Direction == "next")
             {
-                if(counter <= LibraryDataAccess.getLastAuthor() -20)
+                if(counter >= (LibraryDataAccess.getLastAuthor() -20))
                 {
+                    disableBtn = "";
                     counter += 20;
                     dtoList.Clear();
                     dtoList = LibraryDataAccess.getAllAuthorsDALBy20(counter);
-                    disableBtn = "";
                 }
                 else
                 {
                     disableBtn = "next";
+                    counter += 20;
+                    dtoList.Clear();
+                    dtoList = LibraryDataAccess.getAllAuthorsDALBy20(counter);
+                    disableBtn = "";
                 }
             }
             else if(Direction == "")

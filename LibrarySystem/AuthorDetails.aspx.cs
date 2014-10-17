@@ -12,8 +12,22 @@ namespace LibrarySystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            rptAuthorDetails.DataSource = Author.getAuthorByName(Session["AuthorDetails"] as string);
-            rptAuthorDetails.DataBind();
+            rptAuthor.DataSource = Author.getAuthorByName(Session["AuthorId"] as string);
+            rptAuthor.DataBind();
+        }
+        protected void rptAuthorDetails_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            RepeaterItem item = e.Item;
+            
+            if(item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+            {
+                Repeater rptAuhtorDetails = (Repeater)item.FindControl("rptAuthorDetails");
+
+            }
+        }
+        protected void rptBooks_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+
         }
     }
 }

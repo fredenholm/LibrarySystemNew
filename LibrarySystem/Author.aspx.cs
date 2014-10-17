@@ -15,30 +15,29 @@ namespace LibrarySystem
         {
             if (!Page.IsPostBack)
             {
-                rptAuthors.DataSource = Author.getAllBy20("");
+                rptAuthors.DataSource = Author.getAuthorByName(Session["Author"] as string);
                 rptAuthors.DataBind();
-
             }
         }
 
-        protected void AuthorFNBtn_Command(object sender, CommandEventArgs e)
+        protected void AuthorBooks_Command(object sender, CommandEventArgs e)
         {
             Session["AuthorId"] = e.CommandArgument;
-            Response.Redirect("Books.aspx");
+            Response.Redirect("AuthorDetails.aspx");
         }
 
         protected void PreviousBtn_Click(object sender, EventArgs e)
         {
-            disablePrevBtn();
             rptAuthors.DataSource = Author.getAllBy20("previous");
             rptAuthors.DataBind();
+            disablePrevBtn();
         }
 
         protected void NextBtn_Click(object sender, EventArgs e)
         {
-            disablePrevBtn();
             rptAuthors.DataSource = Author.getAllBy20("next");
             rptAuthors.DataBind();
+            disablePrevBtn();
         }
         public void disablePrevBtn()
         {

@@ -25,7 +25,7 @@
             <div class="navbar">
                 <ul>
                     <li><a href="Books.aspx">Books</a></li>
-                    <li ><a href="Author.aspx">Author</a></li>
+                    <li><a href="Author.aspx" id="authorlink" onclick="getAuthorLink_Click">Author</a></li>
                     <li ><a href="User.aspx">Account</a></li>
                     <li ><a href="Borrowers.aspx">About</a></li>
                 </ul>

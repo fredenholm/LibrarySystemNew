@@ -29,13 +29,17 @@ namespace LibrarySystem
 
         protected void getAuthorDetails_Click(object sender, EventArgs e)
         {
-            Session["AuthorDetails"] = txtAuthorTitle.Text;
-            Response.Redirect("AuthorDetails.aspx");
+            Session["Author"] = txtAuthorTitle.Text;
+            Response.Redirect("Author.aspx");
         }
 
         protected void LoginBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("Login.aspx");
+        }
+        protected void getAuthorLink_Click(object sender, EventArgs e)
+        {
+            Session["Author"] = "";
         }
     }
 }

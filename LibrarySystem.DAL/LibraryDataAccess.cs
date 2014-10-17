@@ -44,7 +44,7 @@ namespace LibrarySystem.DAL
             return dto;
         }
         public static string title;
-        public static List<BookDTO> getBookTitle(List<string> booklist)
+        public static List<BookDTO> getBookISBN(List<string> booklist)
         {
             List<BookDTO> dtobooklist = new List<BookDTO>();
             string _connectionString = DataSource.GetConnectionString("library2");  // Make possible to define and use different connectionstrings 
@@ -141,6 +141,8 @@ namespace LibrarySystem.DAL
             }
             return dto;
         }
+
+
 
         public static List<AuthorDTO> getAllAuthorsDAL()
         {

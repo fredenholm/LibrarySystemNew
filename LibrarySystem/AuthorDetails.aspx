@@ -2,26 +2,47 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Repeater ID="rptAuthorDetails" runat="server">
+    <asp:Repeater ID="rptAuthor" runat="server" OnItemDataBound="rptAuthorDetails_ItemDataBound">
         <HeaderTemplate>
             <tr>
                 <th><%#Session["rptAuthorArg"] %></th>
             </tr>
             <tr>
-                <th>ISBN</th>
-                <th>Title</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>BirthYear</th>
             </tr>
             <br/>
         </HeaderTemplate>
         <ItemTemplate>
             <tr>
-                <td><%#Eval("Aid") %></td>
                 <td><%#Eval("FirstName") %></td>
                 <td><%#Eval("LastName") %></td>
                 <td><%#Eval("BirthYear") %></td>
-                <asp:Button ID="Button1" runat="server" text="Books" Font-Size="X-Small"/>
             </tr>
             <br/>
+            <asp:Repeater ID="rptBooks" runat="server" OnItemDataBound="rptBooks_ItemDataBound">
+                <HeaderTemplate>
+                    <tr>
+                        <th>ISBN</th>
+                        <th>Title</th>
+                        <th>SignId</th>
+                        <th>PublicationYear</th>
+                        <th>Pulisher</th>
+                        <th>LibNo</th>
+                    </tr>
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <td><%#Eval("ISBN") %></td>
+                        <td><%#Eval("Title") %></td>
+                        <td><%#Eval("SignId") %></td>
+                        <td><%#Eval("PublicationYear") %></td>
+                        <td><%#Eval("Publisher") %></td>
+                        <td><%#Eval("LibNo") %></td>
+                    </tr>
+                </ItemTemplate>
+            </asp:Repeater>
         </ItemTemplate>
     </asp:Repeater>
 </asp:Content>

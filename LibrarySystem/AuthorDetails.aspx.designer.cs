@@ -13,12 +13,12 @@ namespace LibrarySystem {
     public partial class WebForm4 {
         
         /// <summary>
-        /// rptAuthorDetails control.
+        /// rptAuthor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptAuthorDetails;
+        protected global::System.Web.UI.WebControls.Repeater rptAuthor;
     }
 }

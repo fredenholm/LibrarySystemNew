@@ -69,6 +69,7 @@
     </Content>
     <Content Include="CreateUser.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="Styling.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -73,7 +73,6 @@
     <Content Include="EditAdminAuthor.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="style\Styling.css" />
-    <Content Include="Styling.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -82,6 +81,7 @@
     <Content Include="BookDetails.aspx" />
     <Content Include="AuthorDetails.aspx" />
     <Content Include="Borrowers.aspx" />
+    <Content Include="addAuthor.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminAuthor.aspx.cs">
@@ -161,6 +161,13 @@
     </Compile>
     <Compile Include="Borrowers.aspx.designer.cs">
       <DependentUpon>Borrowers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="addAuthor.aspx.cs">
+      <DependentUpon>addAuthor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="addAuthor.aspx.designer.cs">
+      <DependentUpon>addAuthor.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

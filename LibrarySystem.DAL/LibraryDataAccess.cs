@@ -812,5 +812,64 @@ namespace LibrarySystem.DAL
             }
             return confirmPassword;
         }
+
+        public static void UpdateAuthor(string EFirstname, string ELastName, int EBirthYear, int EAid)
+        { 
+            string _connectionString = DataSource.GetConnectionString("library2");
+            SqlConnection con = new SqlConnection(_connectionString);
+            SqlCommand cmd = new SqlCommand("UPDATE AUTHOR SET FirstName='" + EFirstname + "',LastName='" + ELastName + "',BirthYear='" + EBirthYear + "' WHERE AID='" + EAid + "'", con);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception er)
+            {
+                throw er;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        public static void RemoveAuthor(int aid)
+        {
+            string _connectionString = DataSource.GetConnectionString("library2");
+            SqlConnection con = new SqlConnection(_connectionString);
+            SqlCommand cmd = new SqlCommand("DELETE FROM Author WHERE Aid='" + aid + "'",con);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception er)
+            {
+                throw er;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public static void createAuthor(string AFN, string ALN, int ABY)
+        {
+            string _connectionString = DataSource.GetConnectionString("library2");
+            SqlConnection con = new SqlConnection(_connectionString);
+            SqlCommand cmd = new SqlCommand("INSERT INTO Author(aid,FirstName,LastName,BirthYear)Values('" + (getLastAuthor() + 1) + "','" + AFN + "','" + ALN + "','" + ABY + "')",con);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception er)
+            {
+                throw er;
+            }
+            finally
+            {
+                con.Close();
+            }        
+        }
     }
 }

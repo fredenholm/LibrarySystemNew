@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
    <div>
        <h3>Browse For Author</h3>
-       <label class="alignRightlaberl">aids <asp:Button runat="server" Text="aids" /></label>
+       <label class="alignRightlaberl">aids <asp:Button runat="server" Text="Add" ID="AddButton" OnClick="AddButton_Click" /></label>
    </div>
     <div>
      <asp:Repeater ID="rptAdminAuthor" runat="server">

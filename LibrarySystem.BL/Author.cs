@@ -255,6 +255,15 @@ namespace LibrarySystem.BL
             }
             return results;
         }
+        public static void UpdateAuthor(string FirstName, string Lastname, int BirthYear,int Aid)
+        {
+            LibraryDataAccess.UpdateAuthor(FirstName, Lastname, BirthYear, Aid);
+        }
+
+        public static void CreateAuthor(string FirstName, string Lastname, int BirthYear)
+        {
+            LibraryDataAccess.createAuthor(FirstName, Lastname, BirthYear);
+        }
 
         public bool Update()
         {

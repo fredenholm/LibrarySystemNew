@@ -56,5 +56,10 @@ namespace LibrarySystem
             }
         }
 
+        protected void AddButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("addAuthor.aspx");
+        }
+
     }
 }

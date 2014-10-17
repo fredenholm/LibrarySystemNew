@@ -44,5 +44,6 @@ namespace LibrarySystem.DTO
         public string publicationInfo = null;
         public int pages = 0;
         public List<string> titleList = new List<string>();
+        public List<string> isbnList = new List<string>();
     }
 }

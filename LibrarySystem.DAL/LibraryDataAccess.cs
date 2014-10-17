@@ -75,7 +75,7 @@ namespace LibrarySystem.DAL
             return dtoAidList;
         }
         public static string title;
-        public static List<BookDTO> getBookISBN(List<string> booklist)
+        public static List<BookDTO> getBookTitle(List<string> booklist)
         {
             List<BookDTO> dtobooklist = new List<BookDTO>();
             string _connectionString = DataSource.GetConnectionString("library2");  // Make possible to define and use different connectionstrings 
@@ -107,9 +107,38 @@ namespace LibrarySystem.DAL
             }
 
             return dtobooklist;
-
-
-
+        }
+        public static List<BookDTO> getBookByISBN(string ISBN)
+        {
+            List<BookDTO> dtoISBNList = new List<BookDTO>();
+            string _connectionString = DataSource.GetConnectionString("library2");  // Make possible to define and use different connectionstrings 
+            SqlConnection con = new SqlConnection(_connectionString);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM BOOK WHERE ISBN = " + ISBN, con);
+            try
+            {
+                con.Open();
+                SqlDataReader dar = cmd.ExecuteReader();
+                if (dar.Read())
+                {
+                    BookDTO dto = new BookDTO();
+                    dto.isbnNo = dar["ISBN"] as string;
+                    dto.title = dar["Title"] as string;
+                    dto.signId = (int)dar["SignId"];
+                    dto.publicationYear = dar["PublicationYear"] as string;
+                    dto.publisher = dar["Publisher"] as string;
+                    dto.libNumber = (int)dar["LibNo"];
+                    dtoISBNList.Add(dto);
+                }
+            }
+            catch (Exception er)
+            {
+                throw er;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return dtoISBNList;
         }
         public static string name;
         public static List<AuthorDTO> getAuthorName(List<string> authorlist)

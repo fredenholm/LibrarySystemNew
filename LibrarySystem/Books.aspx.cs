@@ -14,7 +14,7 @@ namespace LibrarySystem
         {
             if(!Page.IsPostBack)
             {
-                rptBooks.DataSource = Book.getAll(Session["AuthorId"] as string);
+                rptBooks.DataSource = Book.getBookByTitle(Session["BookTitle"] as string);
                 rptBooks.DataBind();
             }
         }

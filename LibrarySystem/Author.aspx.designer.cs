@@ -38,5 +38,17 @@ namespace LibrarySystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button NextBtn;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new LibrarySystem.Page Master {
+            get {
+                return ((LibrarySystem.Page)(base.Master));
+            }
+        }
     }
 }

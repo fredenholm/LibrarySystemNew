@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Repeater ID="rptAuthor" runat="server" OnItemDataBound="rptAuthorDetails_ItemDataBound">
+    <asp:Repeater ID="rptAuthor" runat="server" OnItemDataBound="rptBooks_ItemDataBound">
         <HeaderTemplate>
             <tr>
                 <th><%#Session["rptAuthorArg"] %></th>
@@ -21,7 +21,7 @@
                 <td><%#Eval("BirthYear") %></td>
             </tr>
             <br/>
-            <asp:Repeater ID="rptBooks" runat="server" OnItemDataBound="rptBooks_ItemDataBound">
+            <asp:Repeater ID="rptAuthorBooks" runat="server">
                 <HeaderTemplate>
                     <tr>
                         <th>ISBN</th>
@@ -31,6 +31,7 @@
                         <th>Pulisher</th>
                         <th>LibNo</th>
                     </tr>
+                    <br />
                 </HeaderTemplate>
                 <ItemTemplate>
                     <tr>

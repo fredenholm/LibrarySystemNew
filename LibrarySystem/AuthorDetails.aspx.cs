@@ -13,21 +13,17 @@ namespace LibrarySystem
         protected void Page_Load(object sender, EventArgs e)
         {
             rptAuthor.DataSource = Author.getAuthorByAid(Session["AuthorId"] as string);
-            rptAuthor.DataBind();
-        }
-        protected void rptAuthorDetails_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            RepeaterItem item = e.Item;
-            
-            if(item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
-            {
-                Repeater rptAuhtorDetails = (Repeater)item.FindControl("rptAuthorDetails");
-
-            }
+            rptAuthor.DataBind();   
         }
         protected void rptBooks_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-
+            RepeaterItem item = e.Item;
+            if(item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
+            {
+                Repeater rptAuthorBooks = (Repeater)item.FindControl("rptAuthorBooks");
+                rptAuthorBooks.DataSource = Book.getAll(Session["AuthorId"] as string);
+                rptAuthorBooks.DataBind();
+            }
         }
     }
 }

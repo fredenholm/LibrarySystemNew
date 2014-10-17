@@ -11,23 +11,23 @@
 </head>
 <body class="body">
     <form id="form1" runat="server">
-        <div class="header">
+        <div class="header" id="header">
             <h1>Library System</h1>
             <asp:Button ID="LoginBtn" runat="server" Text="Log in" CssClass="Btn-style" OnClick="LoginBtn_Click" />
             <asp:Label id="lblAuthorId" runat="server" text="Auther-id: "></asp:Label> <asp:TextBox id="txtAuthorId" runat="server" />
             <asp:Button ID="getBooks" runat="server" Text="Get List of Books" OnClick="getBooks_Click"/><br />
             <asp:Label ID="lblBookId" runat="server" Text="Book Title: "></asp:Label> <asp:TextBox id="txtBookTitle" runat="server"></asp:TextBox>
-            <asp:Button ID="getBookDetails" runat="server" Text="Get Book Details" OnClick="getBookDetails_Click" /><br />
-            <asp:Label ID="lblAuthor" runat="server" Text="Author Title: "></asp:Label> <asp:TextBox ID="txtAuthorTitle" runat="server"></asp:TextBox>
-            <asp:Button ID="getAuthorDetails" runat="server" Text="Get Author Details" OnClick="getAuthorDetails_Click" /><br />
+            <asp:Button ID="getBookDetails" runat="server" Text="Get List of Books" OnClick="getBookDetails_Click" /><br />
+            <asp:Label ID="lblAuthor" runat="server" Text="Author Title: "></asp:Label> <asp:TextBox ID="txtAuthorTitle" runat="server" OnTextChanged="txtAuthorTitle_TextChanged"></asp:TextBox>
+            <asp:Button ID="getAuthorDetails" runat="server" Text="Get List of Authors" OnClick="getAuthorDetails_Click" /><br />
         </div>
         <div class="wrapper">
             <div class="navbar">
                 <ul>
                     <li><a href="Books.aspx">Books</a></li>
-                    <li><a href="Author.aspx" id="authorlink" onclick="getAuthorLink_Click">Author</a></li>
+                    <li><a href="Author.aspx">Author</a></li>
                     <li ><a href="User.aspx">Account</a></li>
-                    <li ><a href="Borrowers.aspx">About</a></li>
+                    <li ><a href="Borrowers.aspx">Borrowers</a></li>
                 </ul>
             </div>
             <div class="body2">

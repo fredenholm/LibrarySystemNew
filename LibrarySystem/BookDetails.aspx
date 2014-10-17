@@ -4,9 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
     <asp:Repeater ID="rptBooksDetails" runat="server">
-        
         <HeaderTemplate>
-           
             <tr>
                 <th><%#Session["rptBookArg"] %></th>
             </tr>
@@ -23,8 +21,6 @@
             <br/>
             <br />
         </HeaderTemplate>
-       
-        
         <ItemTemplate>
             <table>
                 <td class="td30"><%#Eval("ISBN") %></td>

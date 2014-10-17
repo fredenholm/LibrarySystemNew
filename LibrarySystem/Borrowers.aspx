@@ -20,10 +20,19 @@
                 <td><%#Eval("lastname") %></td>
                 <td><%#Eval("Address") %></td>
                 <td><%#Eval("telno") %></td>
-                <td><%#Eval("Categoryid") %></td>
+                <td><%#Eval("Categoryid") %></td><br/>
             </tr>
-            <br/>
             <asp:Repeater ID="rptBorrowBooks" runat="server" OnItemDataBound="rptBorrowBooks_ItemDataBound">
+                <HeaderTemplate>
+                    <tr>
+                        <th>ISBN</th>
+                        <th>Title</th>
+                        <th>SignId</th>
+                        <th>PulicationYear</th>
+                        <th>Publisher</th>
+                        <th>LibNo</th><br />
+                    </tr>
+                </HeaderTemplate>
                 <ItemTemplate>
                     <tr>
                         <td><%#Eval("ISBN") %></td>
@@ -31,7 +40,7 @@
                         <td><%#Eval("SignId") %></td>
                         <td><%#Eval("PublicationYear") %></td>
                         <td><%#Eval("Publisher") %></td>
-                        <td><%#Eval("LibNo") %></td>
+                        <td><%#Eval("LibNo") %></td><br />
                     </tr>
                     <asp:Repeater ID="rptBorrowBooksStatus" runat="server">
                     <HeaderTemplate>

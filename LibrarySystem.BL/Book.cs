@@ -133,6 +133,15 @@ namespace LibrarySystem.BL
             set { _bookDTO.titleList = value; }
 
         }
+        public List<string> IsbnList
+        {
+            get
+            {
+                Load();
+                return _bookDTO.isbnList;
+            }
+            set { _bookDTO.isbnList = value; }
+        }
         #endregion  // Properties
 
         #region private methods
@@ -182,7 +191,7 @@ namespace LibrarySystem.BL
             return results;
         }
 
-        public static List<Book> getBookByISBN(string Title)
+        public static List<Book> getBookByTitle(string Title)
         {
             List<BookDTO> dtoList = null; ;
             if (string.IsNullOrEmpty(Title))
@@ -195,10 +204,23 @@ namespace LibrarySystem.BL
                 LibraryDataAccess.title = Title;
                 //Fetch the correct AuthorDTO object and connect an Author object for it
                 Book Bookobject = new Book();
-                dtoList = LibraryDataAccess.getBookISBN(Bookobject.TitleList);
+                dtoList = LibraryDataAccess.getBookTitle(Bookobject.TitleList);
             }
             List<Book> results = new List<Book>();
             foreach (BookDTO dto in dtoList)
+            {
+                Book item = new Book(dto);
+                results.Add(item);
+            }
+            return results;
+        }
+        public static List<Book> getBookByISBN(string ISBN)
+        {
+            List<BookDTO> dtolist = null;
+            Book BookObject = new Book();
+            dtolist = LibraryDataAccess.getBookByISBN(ISBN);
+            List<Book> results = new List<Book>();
+            foreach(BookDTO dto in dtolist)
             {
                 Book item = new Book(dto);
                 results.Add(item);

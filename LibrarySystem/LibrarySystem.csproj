@@ -59,6 +59,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminAuthor.aspx" />
+    <Content Include="AmidinBorrowers.aspx" />
     <Content Include="App_Data\Library.mdf" />
     <Content Include="App_Data\library2.mdf" />
     <Content Include="App_Data\library2_log.ldf">
@@ -68,7 +70,9 @@
       <DependentUpon>Library.mdf</DependentUpon>
     </Content>
     <Content Include="CreateUser.aspx" />
+    <Content Include="EditAdminAuthor.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="style\Styling.css" />
     <Content Include="Styling.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -80,12 +84,33 @@
     <Content Include="Borrowers.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminAuthor.aspx.cs">
+      <DependentUpon>AdminAuthor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminAuthor.aspx.designer.cs">
+      <DependentUpon>AdminAuthor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AmidinBorrowers.aspx.cs">
+      <DependentUpon>AmidinBorrowers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AmidinBorrowers.aspx.designer.cs">
+      <DependentUpon>AmidinBorrowers.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CreateUser.aspx.cs">
       <DependentUpon>CreateUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CreateUser.aspx.designer.cs">
       <DependentUpon>CreateUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditAdminAuthor.aspx.cs">
+      <DependentUpon>EditAdminAuthor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditAdminAuthor.aspx.designer.cs">
+      <DependentUpon>EditAdminAuthor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

@@ -43,6 +43,37 @@ namespace LibrarySystem.DAL
 
             return dto;
         }
+        public static string Aid;
+        public static List<AuthorDTO> getAuthorByAid(List<string> Aidlist)
+        {
+            List<AuthorDTO> dtoAidList = new List<AuthorDTO>();
+            string _connectionString = DataSource.GetConnectionString("library2");  // Make possible to define and use different connectionstrings 
+            SqlConnection con = new SqlConnection(_connectionString);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM AUTHOR WHERE aid = " + Aid, con);
+            try
+            {
+                con.Open();
+                SqlDataReader dar = cmd.ExecuteReader();
+                if (dar.Read())
+                {
+                    AuthorDTO dto = new AuthorDTO();
+                    dto.aId = (int)dar["Aid"];
+                    dto.firstName = dar["FirstName"] as string;
+                    dto.lastName = dar["LastName"] as string;
+                    dto.birthYear = (dar["BirthYear"] == DBNull.Value) ? 0 : Convert.ToInt32(dar["BirthYear"].ToString());
+                    dtoAidList.Add(dto);
+                }
+            }
+            catch (Exception er)
+            {
+                throw er;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return dtoAidList;
+        }
         public static string title;
         public static List<BookDTO> getBookISBN(List<string> booklist)
         {

@@ -112,11 +112,6 @@ namespace LibrarySystem.BL
         #endregion //private methods
 
         #region public methods
-        public static AuthorDTO findAuthorDTO(string aId)
-        {
-            AuthorDTO dto = new AuthorDTO();
-            return dto;
-        }
         public static List<Author> getAll()
         {
             // This method retrieves a list of all authors in the library system
@@ -240,6 +235,20 @@ namespace LibrarySystem.BL
             }
             List<Author> results = new List<Author>();
             foreach (AuthorDTO dto in dtoList)
+            {
+                Author item = new Author(dto);
+                results.Add(item);
+            }
+            return results;
+        }
+        public static List<Author> getAuthorByAid(string Aid)
+        {
+            List<AuthorDTO> dtolist = null;
+            LibraryDataAccess.Aid = Aid;
+            Author AuthorObject = new Author();
+            dtolist = LibraryDataAccess.getAuthorByAid(AuthorObject.IsbnList);
+            List<Author> results = new List<Author>();
+            foreach (AuthorDTO dto in dtolist)
             {
                 Author item = new Author(dto);
                 results.Add(item);

@@ -2,8 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Repeater id="rptEditauthor" runat="server">
-        <ItemTemplate>
         <asp:label runat="server" Text="ID: "></asp:label>
         <asp:label runat="server" ID="Aid"></asp:label>
         <br />
@@ -18,8 +16,5 @@
         <br />
         <asp:Button runat="server" id="createBtn" Text="Accept" OnClick="createBtn_Click" />
         <asp:Button runat="server" ID="cancelBtn" Text="Cancel" OnClick="cancelBtn_Click" />
-
-        </ItemTemplate>
-    </asp:Repeater>
 
 </asp:Content>

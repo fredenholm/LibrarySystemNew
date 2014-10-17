@@ -15,10 +15,6 @@ namespace LibrarySystem
         {
             if (!Page.IsPostBack)
             {
-                //rptEditauthor.DataSource = Author.
-                rptEditauthor.DataBind();
-                
-
             }
         }
 

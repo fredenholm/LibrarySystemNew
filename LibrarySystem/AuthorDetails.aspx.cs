@@ -12,7 +12,7 @@ namespace LibrarySystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            rptAuthor.DataSource = Author.getAuthorByName(Session["AuthorId"] as string);
+            rptAuthor.DataSource = Author.getAuthorByAid(Session["AuthorId"] as string);
             rptAuthor.DataBind();
         }
         protected void rptAuthorDetails_ItemDataBound(object sender, RepeaterItemEventArgs e)

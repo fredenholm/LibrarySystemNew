@@ -15,8 +15,10 @@ namespace LibrarySystem
         {
             if (!Page.IsPostBack)
             {
-                    rptAuthors.DataSource = Author.getAuthorByName(Session["Author"] as string);
-                    rptAuthors.DataBind();
+                rptAuthors.DataSource = Author.SortBy20(Author.getAuthorByName(Session["Author"] as string),"");
+                BookStatus();
+                rptAuthors.DataBind();
+                Session.Remove("Author");
             }
         }
 
@@ -28,18 +30,18 @@ namespace LibrarySystem
 
         protected void PreviousBtn_Click(object sender, EventArgs e)
         {
-            rptAuthors.DataSource = Author.getAllBy20("previous");
+            rptAuthors.DataSource = Author.SortBy20(Author.getAll(), "previous");
             rptAuthors.DataBind();
-            disablePrevBtn();
+            BookStatus();
         }
 
         protected void NextBtn_Click(object sender, EventArgs e)
         {
-            rptAuthors.DataSource = Author.getAllBy20("next");
+            rptAuthors.DataSource = Author.SortBy20(Author.getAll(), "next");
             rptAuthors.DataBind();
-            disablePrevBtn();
+            BookStatus();
         }
-        public void disablePrevBtn()
+        public void BookStatus()
         {
             if(BL.Author.disableBtn == "previous")
             {

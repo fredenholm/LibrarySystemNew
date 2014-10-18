@@ -11,7 +11,8 @@ namespace LibrarySystem.BL
     // Requires references to LirarySystem.DTO and LibrarySystem.DAL
     public class Author
     {
-        public static int counter = 1772;
+        public static int index = 0;
+        public static int count = 20;
         private AuthorDTO _authorDTO;
 
         #region constructors
@@ -127,96 +128,40 @@ namespace LibrarySystem.BL
             return results;
         }
         public static string disableBtn = "";
-        /// <summary>
-        /// A function for sorting the right objects in the list
-        /// by pushin prev och next button
-        /// </summary>
-        /// <param name="Direction"></param>
-        /// <returns></returns>
-        public static List<Author> getAllBy20(string Direction)
+        public static List<Author> SortBy20(List<Author> Authorlist, string Direction)
         {
-            // This method retrieves a list of all authors in the library system
-            List<AuthorDTO> dtoList = new List<AuthorDTO>();
-            if(Direction == "previous")
-            {
-                if(counter <= (LibraryDataAccess.getFirstAuthor() + 20))
-                {
-                    disableBtn = "previous";
-                    counter -= 20;
-                    dtoList.Clear();
-                    dtoList = LibraryDataAccess.getAllAuthorsDALBy20(counter);
-                }
-                else
-                {
-                    disableBtn = "";
-                    counter -= 20;
-                    dtoList.Clear();
-                    dtoList = LibraryDataAccess.getAllAuthorsDALBy20(counter);
-                }
-            }
-            else if(Direction == "next")
-            {
-                if(counter >= (LibraryDataAccess.getLastAuthor() -20))
-                {
-                    disableBtn = "";
-                    counter += 20;
-                    dtoList.Clear();
-                    dtoList = LibraryDataAccess.getAllAuthorsDALBy20(counter);
-                }
-                else
-                {
-                    disableBtn = "next";
-                    counter += 20;
-                    dtoList.Clear();
-                    dtoList = LibraryDataAccess.getAllAuthorsDALBy20(counter);
-                    disableBtn = "";
-                }
-            }
-            else if(Direction == "")
-            {
-                dtoList.Clear();
-                    dtoList = LibraryDataAccess.getAllAuthorsDALBy20(counter);  //AuthorDTO is the interface common for BL and DAL
-            }
-
-            // Convert to Author objects
-            List<Author> results = new List<Author>();
-            foreach (AuthorDTO dto in dtoList)
-            {
-                Author item = new Author(dto);
-                results.Add(item);
-            }
-            return results;
-        }
-        public static List<Author> getAllbyCount(string Direction)
-        {
-            List<Author> rangeList = new List<Author>();
-            List<AuthorDTO> dtoList = LibraryDataAccess.getAllAuthorsDAL();
-            List<Author> results = new List<Author>();
-            foreach (AuthorDTO dto in dtoList)
-            {
-                Author item = new Author(dto);
-                results.Add(item);
-            }
+            List<Author> show20List = new List<Author>();
             if (Direction == "previous")
             {
-                if (counter != 0)
+                disableBtn = "";
+                index -= 20;
+                if(index <= 0)
                 {
-                    counter -= 20;
+                    disableBtn = "previous";
                 }
             }
             else if (Direction == "next")
             {
-                if (counter + 20 != results.Count)
+                index += 20;
+                disableBtn = "";
+                if ((index + count) >= Authorlist.Count)
                 {
-                    counter += 20;
+                    disableBtn = "next";
                 }
             }
-            if (counter > 40)
+            else if (Direction == "")
             {
-                rangeList.RemoveRange(1, 20);
+                index = 0;
+                disableBtn = "previous";
             }
-            rangeList.AddRange(results.GetRange(counter, counter + 20));
-            return rangeList;
+            if(Authorlist.Count <= 20)
+            {
+                count = Authorlist.Count;
+                disableBtn = "next";
+            }
+            show20List.Clear();
+            show20List.AddRange(Authorlist.GetRange(index, count));
+            return show20List;
         }
         public static List<Author> getAuthorByName(string Name)
         {
@@ -239,6 +184,7 @@ namespace LibrarySystem.BL
                 Author item = new Author(dto);
                 results.Add(item);
             }
+
             return results;
         }
         public static List<Author> getAuthorByAid(string Aid)

@@ -15,9 +15,10 @@ namespace LibrarySystem
         {
             if (!Page.IsPostBack)
             {
-                rptAdminAuthor.DataSource = Author.getAllBy20("");
+                rptAdminAuthor.DataSource = Author.SortBy20(Author.getAll(), "");
+                disablePrevBtn();
                 rptAdminAuthor.DataBind();
-
+                Session.Remove("Author");
             }
         }
 
@@ -28,16 +29,16 @@ namespace LibrarySystem
         }
         protected void PreviousBtn_Click(object sender, EventArgs e)
         {
-            disablePrevBtn();
-            rptAdminAuthor.DataSource = Author.getAllBy20("previous");
+            rptAdminAuthor.DataSource = Author.SortBy20(Author.getAll(), "previous");
             rptAdminAuthor.DataBind();
+            disablePrevBtn();
         }
 
         protected void NextBtn_Click(object sender, EventArgs e)
         {
-            disablePrevBtn();
-            rptAdminAuthor.DataSource = Author.getAllBy20("next");
+            rptAdminAuthor.DataSource = Author.SortBy20(Author.getAll(), "next");
             rptAdminAuthor.DataBind();
+            disablePrevBtn();
         }
         public void disablePrevBtn()
         {

@@ -12,7 +12,7 @@ namespace LibrarySystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            rptBooksDetails.DataSource = Book.getBookByISBN(Session["ISBN"] as string);
+            rptBooksDetails.DataSource = Book.SortBy20(Book.getBookByISBN(Session["ISBN"] as string),"");
             rptBooksDetails.DataBind();
         }
     }

@@ -60,7 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminAuthor.aspx" />
-    <Content Include="AmidinBorrowers.aspx" />
+    <Content Include="AdminBorrowers.aspx" />
     <Content Include="App_Data\Library.mdf" />
     <Content Include="App_Data\library2.mdf" />
     <Content Include="App_Data\library2_log.ldf">
@@ -91,12 +91,12 @@
     <Compile Include="AdminAuthor.aspx.designer.cs">
       <DependentUpon>AdminAuthor.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AmidinBorrowers.aspx.cs">
-      <DependentUpon>AmidinBorrowers.aspx</DependentUpon>
+    <Compile Include="AdminBorrowers.aspx.cs">
+      <DependentUpon>AdminBorrowers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AmidinBorrowers.aspx.designer.cs">
-      <DependentUpon>AmidinBorrowers.aspx</DependentUpon>
+    <Compile Include="AdminBorrowers.aspx.designer.cs">
+      <DependentUpon>AdminBorrowers.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreateUser.aspx.cs">
       <DependentUpon>CreateUser.aspx</DependentUpon>

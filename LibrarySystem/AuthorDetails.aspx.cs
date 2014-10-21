@@ -21,7 +21,7 @@ namespace LibrarySystem
             if(item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
             {
                 Repeater rptAuthorBooks = (Repeater)item.FindControl("rptAuthorBooks");
-                rptAuthorBooks.DataSource = Book.getAll(Session["AuthorId"] as string);
+                rptAuthorBooks.DataSource = Book.getAllAid(Session["AuthorId"] as string);
                 rptAuthorBooks.DataBind();
             }
         }

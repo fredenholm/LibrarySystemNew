@@ -12,7 +12,9 @@ namespace LibrarySystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            rptBorrow.DataSource = Borrower.getBorrowerId(Usr.getUserId(Transfer.UserName));
+            Button loginBtn = (Button)Master.FindControl("LoginBtn");
+            loginBtn.Text = "Log out";
+            rptBorrow.DataSource = Borrower.getBorrowerId(Usr.getUserId(Session["Username"] as string));
             rptBorrow.DataBind();
         }
 
@@ -27,7 +29,7 @@ namespace LibrarySystem
             if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
             {
                 Repeater rptBorrowBooks = (Repeater)item.FindControl("rptBorrowBooks");
-                rptBorrowBooks.DataSource = Borrow.getBorrowerBooks(Usr.getUserId(Transfer.UserName));
+                rptBorrowBooks.DataSource = Borrow.getBorrowerBooks(Usr.getUserId(Session["Username"] as string));
                 rptBorrowBooks.DataBind();
             }
         }
@@ -38,7 +40,7 @@ namespace LibrarySystem
             if (item.ItemType == ListItemType.Item || item.ItemType == ListItemType.AlternatingItem)
             {
                 Repeater rptBorrowBooksStatus = (Repeater)item.FindControl("rptBorrowBooksStatus");
-                rptBorrowBooksStatus.DataSource = Borrow.getBorrowStatus(Usr.getUserId(Transfer.UserName));
+                rptBorrowBooksStatus.DataSource = Borrow.getBorrowStatus(Usr.getUserId(Session["Username"] as string));
                 rptBorrowBooksStatus.DataBind();
             }
         }

@@ -31,19 +31,21 @@ namespace LibrarySystem
         {
             Session["Author"] = txtAuthorTitle.Text;
             Response.Redirect("Author.aspx");
-            Session["Author"] = "";
-            Session.Remove("Author");
         }
 
         protected void LoginBtn_Click(object sender, EventArgs e)
         {
+            if(LoginBtn.Text == "Log out")
+            {
+                Session.Remove("Username");
+                LoginBtn.Text = "Log in";
+            }
             Response.Redirect("Login.aspx");
         }
-        public string AuthorInput;
-
-        protected void txtAuthorTitle_TextChanged(object sender, EventArgs e)
+        public string LoginButton
         {
-            AuthorInput = txtAuthorTitle.Text;
+            get { return LoginBtn.Text;}
+            set {LoginBtn.Text = value;}
         }
     }
 }

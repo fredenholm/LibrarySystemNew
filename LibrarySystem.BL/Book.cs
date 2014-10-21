@@ -11,6 +11,8 @@ namespace LibrarySystem.BL
     public class Book
     {
         private BookDTO _bookDTO;
+        public static int index = 0;
+        public static int count = 20;
 
         #region constructors
         //Initialize a new DTO-object for the transferring data about author
@@ -164,7 +166,7 @@ namespace LibrarySystem.BL
         #endregion  //private methods
 
         #region public methods
-        public static List<Book> getAll(string aId)
+        public static List<Book> getAllAid(string aId)
         {
             List<BookDTO> dtoList = null; ;
             // This method retrieves a list of all books in the library system
@@ -182,6 +184,20 @@ namespace LibrarySystem.BL
                 dtoList = LibraryDataAccess.getAllAuthorBookDAL(AuthorObject.IsbnList);
             }
             // Convert to Book objects since UI only references BL (not DAL or DTO)
+            List<Book> results = new List<Book>();
+            foreach (BookDTO dto in dtoList)
+            {
+                Book item = new Book(dto);
+                results.Add(item);
+            }
+            return results;
+        }
+        public static List<Book> getAll()
+        {
+            // This method retrieves a list of all authors in the library system
+            List<BookDTO> dtoList = LibraryDataAccess.getAllBooksDAL();  //AuthorDTO is the interface common for BL and DAL
+
+            // Convert to Author objects
             List<Book> results = new List<Book>();
             foreach (BookDTO dto in dtoList)
             {
@@ -227,7 +243,42 @@ namespace LibrarySystem.BL
             }
             return results;
         }
-
+        public static string disableBtn = "";
+        public static List<Book> SortBy20(List<Book> BookList, string Direction)
+        {
+            List<Book> show20List = new List<Book>();
+            if (Direction == "previous")
+            {
+                disableBtn = "";
+                index -= 20;
+                if (index <= 0)
+                {
+                    disableBtn = "previous";
+                }
+            }
+            else if (Direction == "next")
+            {
+                index += 20;
+                disableBtn = "";
+                if ((index + count) >= BookList.Count)
+                {
+                    disableBtn = "next";
+                }
+            }
+            else if (Direction == "")
+            {
+                index = 0;
+                disableBtn = "previous";
+            }
+            if (BookList.Count <= 20)
+            {
+                count = BookList.Count;
+                disableBtn = "next";
+            }
+            show20List.Clear();
+            show20List.AddRange(BookList.GetRange(index, count));
+            return show20List;
+        }
         public bool Update()
         {
             bool updateFlag = true;

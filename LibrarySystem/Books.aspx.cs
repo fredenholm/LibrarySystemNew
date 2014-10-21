@@ -14,8 +14,10 @@ namespace LibrarySystem
         {
             if(!Page.IsPostBack)
             {
-                rptBooks.DataSource = Book.getBookByTitle(Session["BookTitle"] as string);
+                rptBooks.DataSource = Book.SortBy20(Book.getBookByTitle(Session["BookTitle"] as string),"");
+                ButtonStatus();
                 rptBooks.DataBind();
+                Session.Remove("BookTitle");
             }
         }
 
@@ -23,6 +25,36 @@ namespace LibrarySystem
         {
             Session["ISBN"] = e.CommandArgument;
             Response.Redirect("BookDetails.aspx");
+        }
+
+        protected void NextBtn_Click(object sender, EventArgs e)
+        {
+            rptBooks.DataSource = Book.SortBy20(Book.getAll(), "next");
+            rptBooks.DataBind();
+            ButtonStatus();
+        }
+
+        protected void PreviousBtn_Click(object sender, EventArgs e)
+        {
+            rptBooks.DataSource = Book.SortBy20(Book.getAll(), "previous");
+            rptBooks.DataBind();
+            ButtonStatus();
+        }
+        public void ButtonStatus()
+        {
+            if (BL.Book.disableBtn == "previous")
+            {
+                PreviousBtn.Enabled = false;
+            }
+            else if (BL.Book.disableBtn == "next")
+            {
+                NextBtn.Enabled = false;
+            }
+            else if (BL.Book.disableBtn == "")
+            {
+                NextBtn.Enabled = true;
+                PreviousBtn.Enabled = true;
+            }
         }
     }
 }

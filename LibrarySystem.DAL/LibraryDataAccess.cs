@@ -290,41 +290,6 @@ namespace LibrarySystem.DAL
             return LastId;
         }
 
-        public static List<AuthorDTO> getAllAuthorsDALBy20(int counter)
-        {
-            int low = counter;
-            int high = counter + 20;
-            List<AuthorDTO> authorDtoList = new List<AuthorDTO>();
-            //Connect to the database and read all authors
-            string _connectionString = DataSource.GetConnectionString("library2");  // Make possible to define and use different connectionstrings 
-            SqlConnection con = new SqlConnection(_connectionString);
-            SqlCommand cmd = new SqlCommand("SELECT * FROM AUTHOR WHERE Aid BETWEEN " + low + " AND " + high + "", con);
-            try
-            {
-                con.Open();
-                SqlDataReader dar = cmd.ExecuteReader();
-                while (dar.Read())
-                {
-                    AuthorDTO dto = new AuthorDTO();
-                    dto.aId = (int)dar["Aid"];
-                    dto.firstName = dar["FirstName"] as string;
-                    dto.lastName = dar["LastName"] as string;
-                    dto.birthYear = (dar["BirthYear"] == DBNull.Value) ? 0 : Convert.ToInt32(dar["BirthYear"].ToString());
-                    dto.loadStatus = LoadStatus.Ghost;  //Since we are not retrieving the isbn-number list
-                    authorDtoList.Add(dto);
-                }
-            }
-            catch (Exception er)
-            {
-                throw er;
-            }
-            finally
-            {
-                con.Close();
-            }
-            return authorDtoList;
-        }
-
         public static BookDTO loadBookDAL(string isbn)
         {
             BookDTO dto = new BookDTO();
@@ -354,48 +319,6 @@ namespace LibrarySystem.DAL
             }
 
             return dto;
-        }
-
-        public static List<BookDTO> getAllBooksDalTitle(List<string> titleList)
-        {
-            List<BookDTO> dtoList = new List<BookDTO>();
-            string _connectionString = DataSource.GetConnectionString("library2");  // Make possible to define and use different connectionstrings 
-            SqlConnection con = new SqlConnection(_connectionString);
-            string titleListString = "";
-            // Concatenate all isbn-numbers, seperated with comma, into one string
-            int itemNo = 0;
-            foreach (string str in titleList)
-            {
-                itemNo++;
-                titleListString += str + (itemNo == titleList.Count ? "')" : "','");
-            }
-            SqlCommand cmd = new SqlCommand("SELECT * FROM BOOK WHERE Title IN ('" + titleListString, con);
-            try
-            {
-                con.Open();
-                SqlDataReader dar = cmd.ExecuteReader();
-                while (dar.Read())
-                {
-                    BookDTO dto = new BookDTO();
-                    dto.isbnNo = dar["ISBN"] as string;
-                    dto.title = dar["Title"] as string;
-                    dto.signId = (int)dar["SignId"];
-                    dto.publicationYear = dar["PublicationYear"] as string;
-                    dto.publisher = dar["Publisher"] as string;
-                    dto.libNumber = (int)dar["LibNo"];
-                    dtoList.Add(dto);
-                }
-            }
-            catch (Exception er)
-            {
-                throw er;
-            }
-            finally
-            {
-                con.Close();
-            }
-
-            return dtoList;
         }
         public static List<BookDTO> getAllBooksDAL()
         {

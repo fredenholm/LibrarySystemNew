@@ -11,6 +11,8 @@ namespace LibrarySystem.BL
     public class Borrower
     {
         private BorrowerDTO _BorrowerDTO;
+        public static int index = 0;
+        public static int count = 20;
 
         #region constructors
         //Initialize a new DTO-object for the transferring data about author
@@ -164,6 +166,42 @@ namespace LibrarySystem.BL
          {
              LibraryDataAccess.RenewLoan(BPersonId);
          }
+        public static string disableBtn = "";
+        public static List<Borrower> SortBy20(List<Borrower> BookList, string Direction)
+        {
+            List<Borrower> show20List = new List<Borrower>();
+            if (Direction == "previous")
+            {
+                disableBtn = "";
+                index -= 20;
+                if (index <= 0)
+                {
+                    disableBtn = "previous";
+                }
+            }
+            else if (Direction == "next")
+            {
+                index += 20;
+                disableBtn = "";
+                if ((index + count) >= BookList.Count)
+                {
+                    disableBtn = "next";
+                }
+            }
+            else if (Direction == "")
+            {
+                index = 0;
+                disableBtn = "previous";
+            }
+            if (BookList.Count <= 20)
+            {
+                count = BookList.Count;
+                disableBtn = "next";
+            }
+            show20List.Clear();
+            show20List.AddRange(BookList.GetRange(index, count));
+            return show20List;
+        }
         public bool update()
         {
             bool updateflag = true;

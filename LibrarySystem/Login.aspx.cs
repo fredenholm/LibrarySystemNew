@@ -26,7 +26,7 @@ namespace LibrarySystem
                 else
                 {
                     ErrorCleanup();
-                    Transfer.UserName = UserInput.Text;
+                    Session["Username"] = UserInput.Text;
                     Response.Redirect("Borrowers.aspx");
                 }
             }

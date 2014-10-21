@@ -44,7 +44,6 @@
     <Compile Include="Borrow.cs" />
     <Compile Include="Borrower.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transfer.cs" />
     <Compile Include="Usr.cs" />
   </ItemGroup>
   <ItemGroup>

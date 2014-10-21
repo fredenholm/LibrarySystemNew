@@ -898,7 +898,32 @@ namespace LibrarySystem.DAL
             finally
             {
                 con.Close();
-            }        
+            } 
+    
         }
+
+        public static void RenewLoan(string personId)
+        { 
+            DateTime today = DateTime.Today;
+            today.AddDays(30);
+            
+            string _connectionString = DataSource.GetConnectionString("library2");
+            SqlConnection con = new SqlConnection(_connectionString);
+            SqlCommand cmd = new SqlCommand("UPDATE BORROW SET ToBeReturnedDate='"+today+"' WHERE PersonId='"+personId +"' ",con);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception er)
+            {
+                throw er;
+            }
+            finally
+            {
+                con.Close();
+            } 
+        }
+
     }
 }

@@ -159,6 +159,11 @@ namespace LibrarySystem.BL
             }
             return results;
         }
+            
+        public static void RenewLoan(string BPersonId)
+         {
+             LibraryDataAccess.RenewLoan(BPersonId);
+         }
         public bool update()
         {
             bool updateflag = true;
